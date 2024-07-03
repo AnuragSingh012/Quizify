@@ -21,7 +21,7 @@ app.use(
 app.use(morgan("dev"));
 
 app.use("/user", authRoutes);
-app.use("/quizzes", quizRoutes);
+app.use("/quiz", quizRoutes);
 
 app.get("/", (req, res) => {
   res.send("App working fine");

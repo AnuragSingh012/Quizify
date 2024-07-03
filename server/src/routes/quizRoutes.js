@@ -1,8 +1,17 @@
 import express from "express";
 const router = express.Router();
-import {} from "../controllers/quizControllers.js";
+import {
+  createQuiz,
+  getAllQuizzes,
+  getQuizById,
+  quizResult,
+} from "../controllers/quizControllers.js";
 import { verifyToken } from "../utils/tokenManager.js";
 
-router.get("/create", verifyToken);
+router.get("/", getAllQuizzes);
+router.post("/create", createQuiz);
+router.get("/:id", getQuizById);
+router.post("/result", quizResult);
+router.delete("/:id");
 
 export default router;
