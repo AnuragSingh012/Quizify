@@ -2,6 +2,7 @@ import React from "react";
 import FormField from "../components/FormField";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const auth = useAuth();
@@ -26,14 +27,19 @@ const Login = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <form
+        className="flex flex-col gap-2 mt-16 max-w-md m-auto"
+        onSubmit={handleSubmit}
+      >
         <FormField
           name="username"
           id="username"
           type="text"
           label="Username"
           placeholder="enter your username"
+          inputClass="bg-gray-100 p-2 rounded-md"
+          required="true"
         />
         <FormField
           name="password"
@@ -41,10 +47,18 @@ const Login = () => {
           type="password"
           label="password"
           placeholder="enter your password"
+          inputClass="bg-gray-100 p-2 rounded-md"
+          required="true"
         />
-        <button>submit</button>
+        <button className="mt-4 bg-black text-white py-2 rounded-md text-base font-semibold">
+          submit
+        </button>
       </form>
-    </>
+      <div className="flex justify-center items-center gap-2 max-w-md m-auto mt-4">
+        <p>Don't have an account?</p>
+        <Link className="font-medium text-blue-500" to="/signup">Signup</Link>
+      </div>
+    </div>
   );
 };
 

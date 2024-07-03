@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Hero from "../components/Hero";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Active Quizzes</h1>
+      <Hero />
       <div className="flex gap-6 flex-wrap justify-center items-center">
         {quizData.map((quiz) => (
           <div key={quiz._id} className="block">

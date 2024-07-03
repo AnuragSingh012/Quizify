@@ -13,6 +13,7 @@ const FormField = ({
   inputClass,
   labelClass,
   disabled,
+  required,
 }) => {
   return (
     <>
@@ -21,31 +22,63 @@ const FormField = ({
           <label className={labelClass} htmlFor={id}>
             {label}
           </label>
-          <input
-            name={name}
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            checked={checked}
-            className={inputClass}
-            disabled={disabled}
-          />
+          {type === "textarea" ? (
+            <textarea
+              name={name}
+              id={id}
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              className={inputClass}
+              disabled={disabled}
+              required={required}
+              autoComplete="off"
+            />
+          ) : (
+            <input
+              name={name}
+              id={id}
+              type={type}
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              checked={checked}
+              className={inputClass}
+              required={required}
+              disabled={disabled}
+              autoComplete="off"
+            />
+          )}
         </>
       ) : (
         <>
-          <input
-            name={name}
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            checked={checked}
-            className={inputClass}
-            disabled={disabled}
-          />
+          {type === "textarea" ? (
+            <textarea
+              name={name}
+              id={id}
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              className={inputClass}
+              disabled={disabled}
+              required={required}
+              autoComplete="off"
+            />
+          ) : (
+            <input
+              name={name}
+              id={id}
+              type={type}
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              checked={checked}
+              className={inputClass}
+              disabled={disabled}
+              required={required}
+              autoComplete="off"
+            />
+          )}
           <label className={labelClass} htmlFor={id}>
             {label}
           </label>

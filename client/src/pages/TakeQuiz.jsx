@@ -104,7 +104,8 @@ const TakeQuiz = () => {
                   onChange={(e) => handleResponseChange(qIndex, e.target.value)}
                   labelFirst={false}
                   labelClass="mx-2 font-base text-base"
-                  disabled={submitted} // Disable inputs after submission
+                  disabled={submitted}
+                  required="true"
                 />
                 {getIcon(qIndex, option)}
               </div>
@@ -114,13 +115,13 @@ const TakeQuiz = () => {
       </div>
 
       {!submitted ? (
-        <div className="flex justify-center items-center bg-blue-500 mt-4 mb-10 text-white rounded-md py-2 font-semibold">
+        <div className="flex justify-center items-center bg-blue-700 mt-4 mb-10 text-white rounded-md py-2 font-semibold">
           <button className="w-full" type="submit">
             Submit Quiz
           </button>
         </div>
       ) : (
-        <div className="flex justify-center items-center mt-4 mb-10 text-black rounded-md py-2 font-semibold">
+        <div className="flex text-3xl justify-center items-center mt-4 mb-14 text-black rounded-md py-2 font-semibold">
           <p>
             You scored {score} out of {totalQuestions}.
           </p>
