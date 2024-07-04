@@ -24,7 +24,7 @@ app.use("/user", authRoutes);
 app.use("/quiz", quizRoutes);
 
 app.get("/", (req, res) => {
-  res.send("App working fine");
+  res.send("App working");
 });
 
 export default app;
