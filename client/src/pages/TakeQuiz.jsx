@@ -11,6 +11,7 @@ const TakeQuiz = () => {
   const [totalQuestions, setTotalQuestions] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -43,6 +44,7 @@ const TakeQuiz = () => {
     console.log(responseData);
 
     try {
+      setLoading(true);
       const response = await axios.post("/quiz/result", responseData);
       setScore(response.data.score);
       setTotalQuestions(response.data.totalQuestions);
@@ -52,11 +54,17 @@ const TakeQuiz = () => {
       console.log("Quiz submitted successfully", response.data);
     } catch (error) {
       console.error("Error submitting quiz", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   if (!quiz) {
-    return <div className="text-3xl font-semibold h-screen flex justify-center items-center ">Loading...</div>;
+    return (
+      <div className="text-3xl font-semibold h-screen flex justify-center items-center ">
+        Loading...
+      </div>
+    );
   }
 
   const getAnswerClass = (qIndex, option) => {
@@ -117,7 +125,7 @@ const TakeQuiz = () => {
       {!submitted ? (
         <div className="flex justify-center items-center bg-blue-700 mt-4 mb-10 text-white rounded-md py-2 font-semibold">
           <button className="w-full" type="submit">
-            Submit Quiz
+            {loading ? <>Loading.. Results</> : <>Submit Quiz</>}
           </button>
         </div>
       ) : (
