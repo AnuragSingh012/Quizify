@@ -40,7 +40,7 @@ const Signup = () => {
           label="Username"
           placeholder="enter your username"
           inputClass="bg-gray-100 p-2 rounded-md"
-          required="true"
+          required={true}
         />
         <FormField
           name="email"
@@ -49,16 +49,16 @@ const Signup = () => {
           label="email"
           placeholder="enter your email (anything@gmail.com)"
           inputClass="bg-gray-100 p-2 rounded-md"
-          required="true"
+          required={true}
         />
         <FormField
           name="password"
           id="password"
           type="password"
           label="password"
-          placeholder="enter your password"
+          placeholder="Create password (must be at least 6 characters)"
           inputClass="bg-gray-100 p-2 rounded-md"
-          required="true"
+          required={true}
         />
         <button className="mt-4 bg-black text-white py-2 rounded-md text-base font-semibold">
           Sumbit

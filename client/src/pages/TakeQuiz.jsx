@@ -56,7 +56,7 @@ const TakeQuiz = () => {
   };
 
   if (!quiz) {
-    return <div>Loading...</div>;
+    return <div className="text-3xl font-semibold h-screen flex justify-center items-center ">Loading...</div>;
   }
 
   const getAnswerClass = (qIndex, option) => {
@@ -78,7 +78,7 @@ const TakeQuiz = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="max-w-3xl m-auto" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-4 mb-6 bg-gray-100 px-4 py-4 rounded-md">
         <h1 className="text-3xl font-semibold">{quiz.title}</h1>
         <p className="text-sm">{quiz.description}</p>
@@ -105,7 +105,7 @@ const TakeQuiz = () => {
                   labelFirst={false}
                   labelClass="mx-2 font-base text-base"
                   disabled={submitted}
-                  required="true"
+                  required={true}
                 />
                 {getIcon(qIndex, option)}
               </div>

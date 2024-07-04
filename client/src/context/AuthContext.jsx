@@ -2,6 +2,7 @@ import { useContext, createContext, useEffect, useState } from "react";
 import {
   checkAuthStatus,
   loginUser,
+  logoutUser,
   signupUser,
 } from "../helpers/api-communicator";
 
@@ -34,7 +35,13 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(true);
     }
   };
-  const logout = async () => {};
+
+  const logout = async () => {
+    await logoutUser();
+    setIsLoggedIn(false);
+    setUser(null);
+    window.location.reload();
+  };
 
   const value = {
     user,

@@ -9,7 +9,7 @@ import {
 import { verifyToken } from "../utils/tokenManager.js";
 
 router.get("/", getAllQuizzes);
-router.post("/create", createQuiz);
+router.post("/create", verifyToken, createQuiz);
 router.get("/:id", getQuizById);
 router.post("/result", quizResult);
 router.delete("/:id");

@@ -11,7 +11,7 @@ const App = () => {
   return (
     <main>
       <Nav />
-      <div className="max-w-2xl lg:max-w-4xl m-auto px-6 py-2">
+      <div className="m-auto px-6 py-2">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/quiz/:id" element={<TakeQuiz />} />

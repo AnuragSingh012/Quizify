@@ -39,7 +39,7 @@ const Login = () => {
           label="Username"
           placeholder="enter your username"
           inputClass="bg-gray-100 p-2 rounded-md"
-          required="true"
+          required={true}
         />
         <FormField
           name="password"
@@ -48,7 +48,7 @@ const Login = () => {
           label="password"
           placeholder="enter your password"
           inputClass="bg-gray-100 p-2 rounded-md"
-          required="true"
+          required={true}
         />
         <button className="mt-4 bg-black text-white py-2 rounded-md text-base font-semibold">
           submit

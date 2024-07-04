@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormField from "../components/FormField";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
@@ -34,24 +35,26 @@ const CreateQuiz = () => {
     console.log(quizData);
 
     try {
-      const response = await axios.post("/quiz/create", quizData); // Ensure the correct URL
+      const response = await axios.post("/quiz/create", quizData);
+      toast.success("Quiz created successfully");
       console.log(response.data);
     } catch (error) {
+      toast.error("Failed to create quiz");
       console.error("Error creating quiz", error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col">
-        <div className="flex flex-col px-4 py-6 gap-4 border-[0.1px] border-gray-100 rounded-md shadow-lg">
+      <div className="max-w-5xl m-auto flex flex-col">
+        <div className=" flex flex-col px-4 py-6 gap-4 border-[0.1px] border-gray-100 rounded-md shadow-lg">
           <FormField
             name="title"
             id="title"
             placeholder="Enter the title of the quiz"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required="true"
+            required={true}
             inputClass="text-2xl px-2 py-2 border-b border-t-0 border-l-0 border-r-0 focus:outline-none focus:border-b-2"
           />
           <FormField
@@ -61,7 +64,7 @@ const CreateQuiz = () => {
             placeholder="Enter a brief description of the quiz"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required="true"
+            required={true}
             inputClass="text-md px-2 py-2 border-b border-t-0 border-l-0 border-r-0 focus:outline-none focus:border-b-2"
           />
         </div>
@@ -76,7 +79,7 @@ const CreateQuiz = () => {
                 onChange={(e) =>
                   handleChange(qIndex, "questionText", e.target.value)
                 }
-                required="true"
+                required={true}
                 inputClass="w-full text-md px-2 py-2 border-b border-t-0 border-l-0 border-r-0 focus:outline-none focus:border-b-2"
               />
               {question.options.map((option, oIndex) => (
@@ -89,7 +92,7 @@ const CreateQuiz = () => {
                       id={`option-${qIndex}-${oIndex}`}
                       placeholder={`Option ${oIndex + 1}`}
                       value={option}
-                      required="true"
+                      required={true}
                       onChange={(e) =>
                         handleOptionChange(qIndex, oIndex, e.target.value)
                       }
@@ -108,7 +111,7 @@ const CreateQuiz = () => {
                   onChange={(e) =>
                     handleChange(qIndex, "correctAnswer", e.target.value)
                   }
-                  required="true"
+                  required={true}
                   inputClass="text-md px-2 py-2 border-b border-t-0 border-l-0 border-r-0 focus:outline-none focus:border-b-2"
                 />
               </div>
@@ -119,7 +122,7 @@ const CreateQuiz = () => {
             type="button"
             onClick={handleAddQuestion}
           >
-            Add Question
+            Add New Question
           </button>
         </div>
 

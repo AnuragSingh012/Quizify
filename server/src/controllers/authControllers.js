@@ -93,3 +93,19 @@ export const userSignup = async (req, res, next) => {
     return res.status(400).json({ message: "ERROR", cause: err.message });
   }
 };
+
+export const userLogout = async (req, res, next) => {
+  try {
+    res.clearCookie("auth_token", {
+      path: "/",
+      httpOnly: true,
+      domain: "localhost",
+      signed: true,
+    });
+
+    return res.status(200).send("logout sucessfully");
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({ message: "ERROR", cause: error.message });
+  }
+};
