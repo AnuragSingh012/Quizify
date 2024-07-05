@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FormField from "../components/FormField";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const auth = useAuth();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -25,6 +26,12 @@ const Login = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (auth?.user) {
+      return navigate("/");
+    }
+  }, [auth]);
 
   return (
     <div>
@@ -56,7 +63,9 @@ const Login = () => {
       </form>
       <div className="flex justify-center items-center gap-2 max-w-md m-auto mt-4">
         <p>Don't have an account?</p>
-        <Link className="font-medium text-blue-500" to="/signup">Signup</Link>
+        <Link className="font-medium text-blue-500" to="/signup">
+          Signup
+        </Link>
       </div>
     </div>
   );
