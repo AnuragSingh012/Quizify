@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormField from "../components/FormField";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 
 const CreateQuiz = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [questions, setQuestions] = useState([
     { questionText: "", options: ["", "", "", ""], correctAnswer: "" },
   ]);
+
+  useEffect(() => {
+    if (!auth?.user) {
+      return navigate("/login");
+    }
+  }, [auth]);
 
   const handleAddQuestion = () => {
     setQuestions([
