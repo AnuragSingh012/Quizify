@@ -1,10 +1,19 @@
-import React from "react";
+import { useEffect } from "react";
 import FormField from "../components/FormField";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const auth = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth?.user) {
+      return navigate("/");
+    }
+  }, [auth]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
