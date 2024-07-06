@@ -27,7 +27,7 @@ const Home = () => {
     const fetchQuizzes = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/quiz"); // Replace with your actual endpoint
+        const response = await axios.get("/quiz");
         console.log(response.data);
         setQuizData(response.data);
       } catch (err) {
