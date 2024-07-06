@@ -35,6 +35,7 @@ export const userLogin = async (req, res, next) => {
       httpOnly: true,
       secure: true,
       signed: true,
+      sameSite: "None",
     });
 
     return res
@@ -90,6 +91,7 @@ export const userSignup = async (req, res, next) => {
       httpOnly: true,
       secure: true,
       signed: true,
+      sameSite: "None",
     });
 
     return res
@@ -106,6 +108,7 @@ export const userLogout = async (req, res, next) => {
       path: "/",
       httpOnly: true,
       signed: true,
+      sameSite: "None",
     });
 
     return res.status(200).send("logout sucessfully");
