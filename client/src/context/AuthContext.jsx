@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     const checkStatus = async () => {
       const data = await checkAuthStatus();
       if (data) {
-        setUser({ username: data.username, email: data.email });
+        setUser({ id: data.id, username: data.username, email: data.email });
         setIsLoggedIn(true);
       }
     };
@@ -24,7 +24,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     const data = await loginUser(username, password);
     if (data) {
-      setUser({ username: data.username, email: data.email });
+      console.log("data=", data);
+      setUser({ id: data.id, username: data.username, email: data.email });
       setIsLoggedIn(true);
     }
   };
