@@ -45,7 +45,7 @@ const CreateQuiz = () => {
     quizData.creator = auth?.user?.username;
 
     try {
-      const response = await axios.post("/quiz/create", quizData);
+      const response = await axios.post("/quiz/create", quizData, { withCredentials: true });
       toast.success("Quiz created successfully");
       console.log(response.data);
       navigate("/");
