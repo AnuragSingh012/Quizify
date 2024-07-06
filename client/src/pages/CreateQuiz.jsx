@@ -42,12 +42,13 @@ const CreateQuiz = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const quizData = { title, description, questions };
-    console.log(quizData);
+    quizData.creator = auth?.user?.username;
 
     try {
       const response = await axios.post("/quiz/create", quizData);
       toast.success("Quiz created successfully");
       console.log(response.data);
+      navigate("/");
     } catch (error) {
       toast.error("Failed to create quiz");
       console.error("Error creating quiz", error);
