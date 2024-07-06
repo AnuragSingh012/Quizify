@@ -39,20 +39,26 @@ export const userLogin = async (req, res, next) => {
 
     return res
       .status(200)
-      .json({ message: "OK", username: user.username, email: user.email });
+      .json({
+        message: "OK",
+        id: user._id,
+        username: user.username,
+        email: user.email,
+      });
   } catch (err) {}
 };
 
 export const verifyUser = async (req, res, next) => {
   try {
     const user = await User.findById(res.locals.jwtData.id);
+    console.log(res.locals.jwtData.id);
     if (!user)
       return res.status(401).send("User not registerd or Token malfunctioned");
     if (user._id.toString() !== res.locals.jwtData.id)
       return res.status(401).send("Permission didn't work");
     return res
       .status(200)
-      .json({ message: "OK", username: user.username, email: user.email });
+      .json({ message: "OK",id: user.id, username: user.username, email: user.email });
   } catch (err) {}
 };
 
