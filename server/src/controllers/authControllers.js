@@ -22,7 +22,6 @@ export const userLogin = async (req, res, next) => {
     res.clearCookie("auth_token", {
       path: "/",
       httpOnly: true,
-      domain: "localhost",
       signed: true,
     });
 
@@ -31,9 +30,10 @@ export const userLogin = async (req, res, next) => {
     expires.setDate(expires.getDate() + 7);
     res.cookie("auth_token", token, {
       path: "/",
-      domain: "localhost",
+      domain: "quizify-client.vercel.app",
       expires,
       httpOnly: true,
+      secure: true,
       signed: true,
     });
 
@@ -77,7 +77,6 @@ export const userSignup = async (req, res, next) => {
     res.clearCookie("auth_token", {
       path: "/",
       httpOnly: true,
-      domain: "localhost",
       signed: true,
     });
 
@@ -86,9 +85,10 @@ export const userSignup = async (req, res, next) => {
     expires.setDate(expires.getDate() + 7);
     res.cookie("auth_token", token, {
       path: "/",
-      domain: "localhost",
+      domain: "quizify-client.vercel.app",
       expires,
       httpOnly: true,
+      secure: true,
       signed: true,
     });
 
@@ -105,7 +105,6 @@ export const userLogout = async (req, res, next) => {
     res.clearCookie("auth_token", {
       path: "/",
       httpOnly: true,
-      domain: "localhost",
       signed: true,
     });
 
