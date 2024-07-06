@@ -12,7 +12,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async (id) => {
-    console.log(id);
     try {
       await axios.delete(`/quiz/${id}`);
       toast.success("Quiz Deleted successfully");
