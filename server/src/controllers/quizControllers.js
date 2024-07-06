@@ -2,7 +2,7 @@ import Quiz from "../models/quiz.js";
 
 export const getAllQuizzes = async (req, res, next) => {
   try {
-    const quizzes = await Quiz.find();
+    const quizzes = await Quiz.find().populate("creator", "username email");
     if (quizzes) return res.status(200).json(quizzes);
     return res.send("No quizzes Found");
   } catch (err) {
@@ -32,6 +32,7 @@ export const createQuiz = async (req, res) => {
     title,
     description,
     questions,
+    creator: res.locals.jwtData.id,
   };
 
   const quiz = new Quiz(newQuizData);
@@ -70,5 +71,26 @@ export const quizResult = async (req, res, next) => {
     });
   } catch (err) {
     res.status(500).json({ message: "Error submitting quiz", error });
+  }
+};
+
+export const deleteQuizById = async (req, res, next) => {
+  const quiz = await Quiz.findById(req.params.id);
+  if (!quiz) {
+    res.status(404);
+    throw new Error("Quiz not found");
+  }
+
+  try {
+    if (quiz.creator.equals(res.locals.jwtData.id)) {
+      await Quiz.findByIdAndDelete(req.params.id);
+      return res.status(200).json({ message: "Quiz deleted successfully" });
+    } else {
+      return res
+        .status(403)
+        .json({ message: "Not authorized to delete this quiz" });
+    }
+  } catch (err) {
+    return res.status(400).json({ message: "ERROR", cause: err.message });
   }
 };
