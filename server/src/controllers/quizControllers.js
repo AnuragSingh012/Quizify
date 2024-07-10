@@ -32,7 +32,6 @@ export const createQuiz = async (req, res) => {
     title,
     description,
     questions,
-    creator: res.locals.jwtData.id,
   };
 
   const quiz = new Quiz(newQuizData);
