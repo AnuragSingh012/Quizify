@@ -11,16 +11,16 @@ const Home = () => {
   const [quizData, setQuizData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`/quiz/${id}`);
-      toast.success("Quiz Deleted successfully");
-      setQuizData(quizData.filter((quiz) => quiz._id !== id));
-    } catch (error) {
-      toast.error("Failed to Delete Quiz");
-      console.log(error);
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await axios.delete(`/quiz/${id}`);
+  //     toast.success("Quiz Deleted successfully");
+  //     setQuizData(quizData.filter((quiz) => quiz._id !== id));
+  //   } catch (error) {
+  //     toast.error("Failed to Delete Quiz");
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -50,14 +50,14 @@ const Home = () => {
           quizData.map((quiz) => (
             <div className="w-80 mt-4" key={quiz._id}>
               <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                {auth?.user?.id === quiz.creator._id && (
+{/*                 {auth?.user?.id === quiz.creator._id && (
                   <button
                     onClick={() => handleDelete(quiz._id)}
                     className="w-full flex justify-end"
                   >
                     <img src={Delete} alt="delete" />
                   </button>
-                )}
+                )} */}
                 <h2 className="text-2xl font-semibold mb-2">{quiz.title}</h2>
                 <p className="text-gray-700 line-clamp-3">{quiz.description}</p>
                 <Link to={`/quiz/${quiz._id}`}>
